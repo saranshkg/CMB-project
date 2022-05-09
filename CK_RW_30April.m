@@ -171,7 +171,7 @@ end
 
 %% Ex-Existential Crisis:
 
-% Find RANDOM INTEGER VALUE in a range
+% Find RANDOM INTEGER VALUE in a range - done 
 % cpinc = randi([,]) - returns an integer value instead of a matrix of the same size
 
 %% Our interpretation
@@ -196,28 +196,25 @@ end
 
 %% Problems:
 
-%make (a) store it as 0 and 1
+% are they actually changing their betting behavior or not based on
+% learnrate? are they actually using learnrate to change this? - done
 
-%are they actually changing their betting behavior or not based on
-%learnrate? are they actually using learnrate to change this?
+% Is 5 a small number for trial incrementing?
 
-%Is 5 a small number for trial incrementing?
+% find optimal learnrates for all 4 places
 
-%find optimal learnrates for all 4 places
+% why is incremental of learnrate resulting in more fear (so model is scared
+% of taking bets)
 
-%why is incremental of learnrate resulting in more fear (so model is scared
-%of taking bets)
-
-% Make change point values impact winning [change is impacting (r)]
+% Make change point values impact winning [change is impacting (r)] - done
 
 % Correlate storingstake to betting - done
 % Correlate betting to winning - done
 
-% find a way to choose cpinc randomly ////works individually, still gives
-% error on combined code - done
+% find a way to choose cpinc randomly - done
 
-% store a as 0 and 1
+% store a as 0 and 1 - done
 
-% rn model is reversing betting, winning and stake. It is taking more bets
-% when its 1 than when its 100 (even when rProb is 0.8) - to solve this we
-% added some weightage to stake above 10
+% rn model is not considering past betting behaviour, past winnings and current stake for action. 
+% It is taking more bets when its 1 than when its 100 (even when rProb is 0.8) - done, solved this using 
+% added weightage for stake above 10.

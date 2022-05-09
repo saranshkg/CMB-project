@@ -99,8 +99,8 @@ for i = 1:cpinc:160
         cumul = 0;
 
         % r/beta        >=10               <10
-        % Cumul >=4     LR + a(0.89)      LR + a(0.5)
-        % Cumul <4      a(0.5)            a(0.11)
+        % Cumul >=4     LR + a(0.89)      LR + a(0.50)
+        % Cumul <4      a(0.50)            a(0.11)
         % Based on a(0.xy). Cumulative sum of p1 and p2 is lesser than xy%
         % which means you take the bet xy% times. When the cumul is lesser
         % than 4, the model should not be incrementing learning        
@@ -176,21 +176,23 @@ end
 
 %% Our interpretation
 
-% stake (beta), Learning rate (alpha), winning/losing (r), betting/not betting (a), change point (change)
+% stake (beta/inverse temp), Learning rate (alpha), winning/losing (r), betting/not betting (a), change point (change)
 % Our interpretation: with RW, changpoint should eventually change betting
 % behaviour. More than winning/losing it should be dependent on stake (this is just for RW)
 % inturn betting should be dependent on winning/losing (because winning
 % is dependent on changepoint (this is just for CK))
 
-% Model 2 = Adaptation of Rescorla-Wagner+Choice Kernel.
-% Route two: Betting based on stake, changepoint and changepoint detection through winning or losing
-% value to maximize points
-% Betting behaviour is more controlled here as we take more bets depending
-% on both stake, changepoint detection
-
+% Changepoint detection is done through whether or not you are winning
+% previously. As soon as you start winning or losing a lot, model/subject
+% recognizes some change. We control for this by looking at last 7 trials
 % the reason CK is using last 7 trials is because realistically the working
 % memory can store only +- 7 items in the digit span. As the response time
-% for each trial is less
+% for each trial is lesser than 3.5 seconds, the subjects may not be able
+% to remember whether they won or not beyond the last 7 trials.
+
+% Model 2 = Adaptation of Rescorla-Wagner+Choice Kernel.
+% Route two: Betting based on stake, changepoint and changepoint detection through winning or losing
+% value to maximize points. Betting behaviour is more controlled
 
 %% Problems:
 
@@ -206,15 +208,14 @@ end
 %why is incremental of learnrate resulting in more fear (so model is scared
 %of taking bets)
 
-% Make change point values impact winning [change is impacting (r)]
+% Make change point values impact winning [change is impacting (r)] - done
 
 % Correlate storingstake to betting - done
 % Correlate betting to winning - done
 
-% find a way to choose cpinc randomly ////works individually, still gives
-% error on combined code - done
+% find a way to choose cpinc randomly - done
 
-% store a as 0 and 1
+% store a as 0 and 1 - done
 
 % rn model is reversing betting, winning and stake. It is taking more bets
 % when its 1 than when its 100 (even when rProb is 0.8) - to solve this we

@@ -1,0 +1,71 @@
+%% Cleanup
+clc; % clean the command window
+clear; % clear workspace of all variables
+close all; % close any open figures
+
+% RW - Model 1, RW+CK - Model 2
+
+data1 = struct;
+data2 = struct;
+
+% model choice
+model_names = {'rw_updated', 'rw+ck_updated'};
+nReps = 50;
+% experiment parameters
+nTrials   = 160;    % number of trials
+mu  = [0.8 0.2];    % mean reward of bandits
+data.rProbs = mu;
+
+choiceHistory = NaN(nReps, nTrials);
+rewardsObtained = NaN(nReps, nTrials);
+
+%% p(correct) analysis
+param_names{1,1} = 'learning rate: \alpha';
+param_names{1,2} = 'inverse temp: \beta';
+param_names{2,1} = 'learning rate: \alpha';
+param_names{2,2} = 'inverse temp: \beta';
+param_names{2,3} = 'learning rate_c: \alphaC';
+param_names{2,4} = 'inverse temp_c: \betaC';
+
+fprintf('Model 1: %s\n', model_names{1});
+parameters = NaN(nReps, 1);
+for n = 1:nReps
+    fprintf('Rep %1.0f\n',n)
+    
+    epsilon = rand;
+    [a, r] = simulate_M2WSLS_v1(nTrials, mu, epsilon);
+    parameters(n) = [epsilon];
+    choiceHistory(n, :) = a;
+    rewardsObtained(n, :) = r;
+end
+
+data2.parameters = parameters;
+data2.choiceHistory = choiceHistory;
+data2.rewardsObtained = rewardsObtained;
+save('D:\g_drive\Career Documents\MA Liberal Studies\Coursework\Semester 2\Computational Modeling of Behaviour\Assignment 2\assignment2_code\data2.mat', 'data2');
+
+
+fprintf('Model 1: %s\n', model_names{1});
+parameters = NaN(nReps, 2);
+for n = 1:nReps
+    fprintf('Rep %1.0f\n',n)
+    
+    learning_rate = rand;
+    inverse_temp = exp(1);
+    [a, r] = simulate_rescorla_updated(nTrials, mu, learning_rate, inverse_temp);
+    parameters(n, :) = [learning_rate inverse_temp];
+    choiceHistory(n, :) = a;
+    rewardsObtained(n, :) = r;
+end
+
+data3.parameters = parameters;
+data3.choiceHistory = choiceHistory;
+data3.rewardsObtained = rewardsObtained;
+save('D:\g_drive\Career Documents\MA Liberal Studies\Coursework\Semester 2\Computational Modeling of Behaviour\Modeling Competition\data1.mat', 'data1');
+
+
+function simulate_model(model_num)
+    if model_num = 1
+
+
+end

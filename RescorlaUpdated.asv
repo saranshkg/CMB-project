@@ -99,9 +99,6 @@ for i = 1:cpinc:160
     end    
 end
 
-% stake (beta/inverse temp), Learning rate (alpha), winning/losing (r), betting/not betting (a), change point (change)
-% Model 1 = Adaptation of Rescorla-Wagner.
-% Route one: Betting based on stake value to maximize points
-% This model uses stake to influence betting behaviour, not changepoint or winning/losing. Hence, inverse 
-% temperature is able to mimic stake well wherein it gives more weightage to higher stakes than lower ones,
-% while still introducing noise through softmax
+% stake (beta), Learning rate (alpha), winning/losing (r), betting/not betting (a), change point (change)
+% Model 1 = Adaptation of Rescorla-Wagner
+% This model uses stake to influence betting behaviour, not changepoint or winning/losing. Hence, inverse temperature is able to mimic stake well wherein it gives more weightage to higher s 

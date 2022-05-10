@@ -3,13 +3,22 @@
 % Computational Modeling of Behavior 
 % Ashoka University, Spring 2022
 
+<<<<<<< HEAD
+%function [a, r, alpha, betaParm] = simulate_rw_updated(cpinc) 
+    %% Cleanup
+    clc; % clean the command window
+    clear; % clear workspace of all variables
+    close all
+=======
 function [a_final, r, alpha, betaParm] = simulate_rw_updated(cpinc)
     %% Cleanup
     %clc; % clean the command window
     %clear; % clear workspace of all variables
     %close all
 
+>>>>>>> cd96c6b3e5c077ae53dd15405e2a4c140e946abf
     %% setting up the world
+    
     nTrial = 160;
     Options = 2;
     
@@ -36,50 +45,45 @@ function [a_final, r, alpha, betaParm] = simulate_rw_updated(cpinc)
     
     % a (betting or not betting), r (winning or losing)
     a = zeros(nTrial,1); 
-    a_final = zeros(nTrial,1); 
     r = NaN(nTrial,1); 
     
-    % cpinc = changepoint incrementation, randomly changing every 15-60
-    % trials. A better way to do this would be to make it choose between 15-60
-    % again after every changepoint
-    %cpinc = randi([15,60]);
-    %cpfirst = cpinc;
+    % cpinc = changepoint incrementation
+    % Changpoint is generated every 15-60 trials, determined by observing
+    % participant data
+    cpinc = randi([15,60]);
+    
     %% Simulation
-      
     % Hardstop for breaking the changepoint after 160 trials
     for i = 1:cpinc:160
-        
         for t = i:(i+cpinc)
             if t > 160
-                break
+               break
             end        
-          
+              
             % beta is mimicking stake
             betaParm = randsample(stake,1);
-    
+     
             % Storing changepoint
             change(t) = changepoint;
             % Storing stake
             storingstake(t) = betaParm;
-            
-    
+             
             % compute choice probabilities
             choiceProb(t,:) = exp(V(t,:)*betaParm)/sum(exp(V(t,:)*betaParm));
-            
+             
             % deciding whether or not to take the bet
             a(t) = relevanttous(choiceProb(t,:),Options);
-            a_final(t) = a(t) - 1;
-            
+              
             % generate reward based on choice, specified by set probabilities -
             % checking if it is lesser than the changepoint value (0.8 or 0.2)
             % only instead of randomizing each time.        
             r(t) = rand <= changepoint;
-            
+             
             % update values
             V(t+1,:) = V(t,:);
             delta = r(t)-V(t,a(t));
             V(t+1,a(t)) = V(t,a(t)) + alpha*delta;
-                       
+                           
             % Stopping learnrate incrementation at 1
             if changepoint == 0.2
                 if alpha <= 0.994
@@ -89,17 +93,16 @@ function [a_final, r, alpha, betaParm] = simulate_rw_updated(cpinc)
                 alpha = alpha + 0.003;
             end
         end
-        
+               
         % Changing changepoint randomly
         if changepoint == 0.2
             changepoint = 0.8;
         else
             changepoint = 0.2;
-        end    
-        %cpinc = randi([cpfirst-5,cpfirst+5]);
-
+        end
     end
-end
+%end
+
 
 % stake (beta/inverse temp), Learning rate (alpha), winning/losing (r), betting/not betting (a), change point (change)
 % Model 1 = Adaptation of Rescorla-Wagner.

@@ -1,13 +1,13 @@
-a% ModellingChallenge
+% ModellingChallenge
 % Samarth Jain, Prerana Jain, Saransh Gupta, Anubhab Bhattacharya, Anusha Kaberwal
 % Computational Modeling of Behavior 
 % Ashoka University, Spring 2022
 
 function [a_final, r, alpha, betaParm] = simulate_rw_updated(cpinc)
-%% Cleanup
-clc; % clean the command window
-clear; % clear workspace of all variables
-close all
+    %% Cleanup
+    %clc; % clean the command window
+    %clear; % clear workspace of all variables
+    %close all
 
     %% setting up the world
     nTrial = 160;

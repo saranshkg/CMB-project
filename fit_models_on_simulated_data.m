@@ -9,17 +9,21 @@ function [BIC, iBEST, BEST] = fit_models_on_simulated_data(a, r)
 end
 
 
-
 function [Xfit, LL, BIC] = fit_rw_updated(a, r)
-    obFunc = @(x) lik_rw_updated(a, r, x);
+    for i = 1:160
+        a(i) = a(i) + 1;
+    end
+    for i = 1:100
+        obFunc = @(x) lik_rw_updated(a, r, x);
+        
+        X0 = randi([15, 60]);
+        LB = 15;
+        UB = 60;
+        [Xfit,NegLL,flag,out,lambda,grad,hess] = fmincon(obFunc, X0, [], [], [], [], LB, UB);
     
-    X0 = randi([15, 60]);
-    LB = 15;
-    UB = 60;
-    [Xfit, NegLL] = fmincon(obFunc, X0, [], [], [], [], LB, UB);
-    
-    LL = -NegLL;
-    BIC = length(X0) * log(length(a)) + 2*NegLL;
+        LL = -NegLL;
+        BIC = length(X0) * log(length(a)) + 2*NegLL;
+    end
 end
 
 

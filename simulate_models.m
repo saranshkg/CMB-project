@@ -37,11 +37,12 @@ function [data1, data2] = simulate_models()
         cpinc = randi([15, 60]);
         [a, r, learning_rate, inverse_temp] = simulate_rw_updated(cpinc);
         %parameters(n, :) = [learning_rate inverse_temp];
+        parameter_cp(n) = cpinc;
         choiceHistory_bets(n, :) = a;
         rewardsObtained_wins(n, :) = r;
     end
     
-    %data1.parameters = parameters;
+    data1.parameter_cp = parameter_cp;
     data1.choiceHistory_bets = choiceHistory_bets;
     data1.rewardsObtained_wins = rewardsObtained_wins;
     save('D:\g_drive\Career Documents\MA Liberal Studies\Coursework\Semester 2\Computational Modeling of Behaviour\Modeling Competition\data1.mat', 'data1');
@@ -53,11 +54,12 @@ function [data1, data2] = simulate_models()
         cpinc = randi([15, 60]);
         [a, r, learning_rate, learning_rate_c, inverse_temp, inverse_temp_c] = simulate_rwck_updated(cpinc);
         %parameters(n) = [learning_rate learning_rate_c inverse_temp inverse_temp_c];
+        parameter_cp(n) = cpinc;
         choiceHistory_bets(n, :) = a;
         rewardsObtained_wins(n, :) = r;
     end
     
-    %data2.parameters = parameters;
+    data2.parameter_cp = parameter_cp;
     data2.choiceHistory_bets = choiceHistory_bets;
     data2.rewardsObtained_wins = rewardsObtained_wins;
     save('D:\g_drive\Career Documents\MA Liberal Studies\Coursework\Semester 2\Computational Modeling of Behaviour\Modeling Competition\data2.mat', 'data2');

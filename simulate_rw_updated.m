@@ -1,17 +1,15 @@
-% ModellingChallenge
+a% ModellingChallenge
 % Samarth Jain, Prerana Jain, Saransh Gupta, Anubhab Bhattacharya, Anusha Kaberwal
 % Computational Modeling of Behavior 
 % Ashoka University, Spring 2022
 
+function [a_final, r, alpha, betaParm] = simulate_rw_updated(cpinc)
 %% Cleanup
-%clc; % clean the command window
-%clear; % clear workspace of all variables
-%close all
-
-function [a_final, r, alpha, betaParm] = simulate_rw_updated()
+clc; % clean the command window
+clear; % clear workspace of all variables
+close all
 
     %% setting up the world
-    
     nTrial = 160;
     Options = 2;
     
@@ -33,7 +31,7 @@ function [a_final, r, alpha, betaParm] = simulate_rw_updated()
     storingstake = zeros(nTrial,1);
     
     % Starting with a set learning rate
-    alpha = [0.05];
+    alpha = 0.05;
     choiceProb = zeros(nTrial, Options);
     
     % a (betting or not betting), r (winning or losing)
@@ -44,16 +42,13 @@ function [a_final, r, alpha, betaParm] = simulate_rw_updated()
     % cpinc = changepoint incrementation, randomly changing every 15-60
     % trials. A better way to do this would be to make it choose between 15-60
     % again after every changepoint
-    cpinc = randi([15,60]);
-    
+    %cpinc = randi([15,60]);
+    %cpfirst = cpinc;
     %% Simulation
-    
-    % Changpoint is generated every 15-60 trials, determined by observing
-    % participant data
-    cpinc = randi([15,60]);
-    
+      
     % Hardstop for breaking the changepoint after 160 trials
     for i = 1:cpinc:160
+        
         for t = i:(i+cpinc)
             if t > 160
                 break
@@ -94,13 +89,15 @@ function [a_final, r, alpha, betaParm] = simulate_rw_updated()
                 alpha = alpha + 0.003;
             end
         end
-           
+        
         % Changing changepoint randomly
         if changepoint == 0.2
             changepoint = 0.8;
         else
             changepoint = 0.2;
         end    
+        %cpinc = randi([cpfirst-5,cpfirst+5]);
+
     end
 end
 
@@ -110,8 +107,6 @@ end
 % This model uses stake to influence betting behaviour, not changepoint or winning/losing. Hence, inverse 
 % temperature is able to mimic stake well wherein it gives more weightage to higher stakes than lower ones,
 % while still introducing noise through softmax
-
-
 
 %TO-DO
 %simulation - done

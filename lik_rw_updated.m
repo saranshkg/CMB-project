@@ -1,4 +1,4 @@
-function NegLL = lik_rw_updated(a, r, alpha, beta)
+function NegLL = lik_rw_updated(a, r, cp)
     Q = [0.5 0.5];
     
     

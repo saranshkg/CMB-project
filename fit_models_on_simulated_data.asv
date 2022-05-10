@@ -1,0 +1,9 @@
+function [BIC, iBEST, BEST] = fit_models_on_simulated_data(sim_data_rw_per_sub, sim_data_rwck_per_sub)
+    
+[~, ~, BIC(1)] = fit_rw(a, r);
+[~, ~, BIC(2)] = fit_rwck(a, r);
+
+[M, iBEST] = min(BIC);
+BEST = BIC == M;
+BEST = BEST / sum(BEST);
+end

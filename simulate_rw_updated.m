@@ -3,11 +3,20 @@
 % Computational Modeling of Behavior 
 % Ashoka University, Spring 2022
 
+<<<<<<< HEAD
 %function [a, r, alpha, betaParm] = simulate_rw_updated(cpinc) 
     %% Cleanup
     clc; % clean the command window
     clear; % clear workspace of all variables
     close all
+=======
+function [a_final, r, alpha, betaParm] = simulate_rw_updated(cpinc)
+    %% Cleanup
+    %clc; % clean the command window
+    %clear; % clear workspace of all variables
+    %close all
+
+>>>>>>> cd96c6b3e5c077ae53dd15405e2a4c140e946abf
     %% setting up the world
     
     nTrial = 160;

@@ -17,9 +17,9 @@ function [Xfit, LL, BIC, Xfit_mean, X0] = fit_rw_updated(a, r, nIter)
     for i = 1:nIter
         obFunc = @(x) lik_rw_updated(a, r, x);
      
-        X0 = randi([30, 115]);
-        LB = 30;
-        UB = 115;
+        X0 = randi([40, 100]);
+        LB = 40;
+        UB = 100;
         [Xfit(i), NegLL(i)] = fmincon(obFunc, X0, [], [], [], [], LB, UB);
     end
     
@@ -37,9 +37,9 @@ function [Xfit, LL, BIC, Xfit_mean, X0] = fit_rwck_updated(a, r, nIter)
     for i=1:nIter
         obFunc = @(x) lik_rwck_updated(a, r, x);
         
-        X0 = randi([30, 115]);
-        LB = 30;
-        UB = 115;
+        X0 = randi([40, 100]);
+        LB = 40;
+        UB = 100;
         [Xfit(i), NegLL(i)] = fmincon(obFunc, X0, [], [], [], [], LB, UB);
     end
 

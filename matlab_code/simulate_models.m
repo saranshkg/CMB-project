@@ -32,7 +32,7 @@ function [data1, data2] = simulate_models()
     %parameters = NaN(nReps, 2);
     for n = 1:nReps
         fprintf('Rep %1.0f\n',n)
-        cpinc = randi([30, 115]);
+        cpinc = randi([40, 100]);
         [a, r, learning_rate, inverse_temp] = simulate_rw_updated(cpinc);
         %parameters(n, :) = [learning_rate inverse_temp];
         parameter_cp(n) = cpinc;
@@ -49,7 +49,7 @@ function [data1, data2] = simulate_models()
     parameters = NaN(nReps, 4);
     for n = 1:nReps
         fprintf('Rep %1.0f\n',n)
-        cpinc = randi([30, 115]);
+        cpinc = randi([40, 100]);
         [a, r, learning_rate, learning_rate_c, inverse_temp, inverse_temp_c] = simulate_rwck_updated(cpinc);
         %parameters(n) = [learning_rate learning_rate_c inverse_temp inverse_temp_c];
         parameter_cp(n) = cpinc;

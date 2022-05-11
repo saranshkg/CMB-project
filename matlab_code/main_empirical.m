@@ -25,7 +25,7 @@ plot(BIC_emp_data(:,1), 'b', 'LineWidth',1.25);
 hold on;
 plot(BIC_emp_data(:,2), 'r', 'LineWidth',1.25);
 legend({"Model 1: RW" + newline, "Model 2: RWCK"});
-xlabel('Trial Number')	
+xlabel('Empirical Dataset #')	
 ylabel('BIC Values')
 
 [cpinc_emp] = model_free_analysis(nReps);
@@ -41,7 +41,7 @@ plot(Xfit_mean1, 'g', 'LineWidth',1.25);
 hold on;	
 plot (cpinc_emp, 'r', 'LineWidth',1.25);	
 hold on;	
-xlabel('Trial Number')	
+xlabel('Empirical Dataset #')	
 ylabel('Change Point Occurence')
 
 nexttile
@@ -53,7 +53,7 @@ plot (Xfit_mean2, 'g', 'LineWidth',1.25);
 hold on;	
 plot (cpinc_emp, 'r', 'LineWidth',1.25);	
 hold on;	
-xlabel('Trial Number')	
+xlabel('Empirical Dataset #')	
 ylabel('Change Point Occurence')	
 lgd = legend ({"X-fit_{mean}" + newline, "cpinc_{emp}"});
 lgd.Layout.Tile = 2;	

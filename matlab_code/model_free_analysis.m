@@ -24,5 +24,16 @@ for n = 1:nReps
     cpinc_emp(n) = mean(cp_diff);
             
 end
+
+figure(6);
+title('Model free analysis: Empirical change point (mean)')
+hold on;
+set(gcf, 'Position', [811   417   500   400])
+set(gca, 'fontsize', 12);
+plot(cpinc_emp, 'r', 'LineWidth',1.25);
+%legend({"Model 1: RW" + newline, "Model 2: RWCK"});
+xlabel('Empirical Dataset #')	
+ylabel('Change Point Occurence')
+
 end
 

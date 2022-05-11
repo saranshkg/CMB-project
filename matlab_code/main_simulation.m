@@ -43,7 +43,7 @@ end
 
 
 figure(1); 
-title('Confusion Matrix: RW(model 1) vs RWCK(model 2)')
+title('Confusion Matrix for ' + string(nReps) +' simulated datasets: RW(model 1) vs RWCK(model 2)')
 hold on;
 set(gcf, 'Position', [811   417   500   400])
 set(gca, 'fontsize', 12);
@@ -57,7 +57,7 @@ hold on;
 plot(BIC_rw_sim_data(:,1), 'b', 'LineWidth',1.25);	
 hold on;
 plot(BIC_rw_sim_data(:,2), 'r', 'LineWidth',1.25);	
-xlabel('Trial Number')	
+xlabel('Simulated Dataset #')	
 ylabel('BIC Values')
 
 nexttile
@@ -66,7 +66,7 @@ hold on;
 plot(BIC_rwck_sim_data(:,1), 'b', 'LineWidth',1.25);	
 hold on;
 plot(BIC_rwck_sim_data(:,2), 'r', 'LineWidth',1.25);	
-xlabel('Trial Number')	
+xlabel('Simulated Dataset #')	
 ylabel('BIC Values')
 lgd = legend ({"Model 1: RW" + newline, "Model 2: RWCK"});
 lgd.Layout.Tile = 2;	
@@ -88,7 +88,7 @@ plot (Xfit_mean_rw1, 'g', 'LineWidth',1.25);
 hold on;	
 plot (sim_data_rw.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
-xlabel('Trial Number')	
+xlabel('Simulated Dataset #')	
 ylabel('Change Point Occurence')
 
 nexttile	
@@ -100,7 +100,7 @@ plot (Xfit_mean_rw2, 'g', 'LineWidth',1.25);
 hold on;	
 plot (sim_data_rwck.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
-xlabel('Trial Number')	
+xlabel('Simulated Dataset #')	
 ylabel('Change Point Occurence')
 
 nexttile	
@@ -112,7 +112,7 @@ plot (Xfit_mean_rwck1, 'g', 'LineWidth',1.25);
 hold on;	
 plot (sim_data_rw.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
-xlabel('Trial Number')	
+xlabel('Simulated Dataset #')	
 ylabel('Change Point Occurence')	
 
 nexttile	
@@ -124,7 +124,7 @@ plot (Xfit_mean_rwck2, 'g', 'LineWidth',1.25);
 hold on;	
 plot (sim_data_rwck.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
-xlabel('Trial Number')	
+xlabel('Simulated Dataset #')	
 ylabel('Change Point Occurence')	
 lgd = legend ({"X-fit_{mean}" + newline, "cpinc_{sim}"});
 lgd.Layout.Tile = 4;	

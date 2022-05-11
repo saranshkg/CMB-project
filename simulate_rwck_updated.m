@@ -124,16 +124,6 @@ for i = 1:cpinc:160
 
                 % values of learnrate incrementation have been generated through experimentation of
                 % different values
-                if learnRate_CK <= 0.99998
-                    learnRate_CK = learnRate_CK + 0.00002;
-                end
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 192249cca35889c3728232d8e58f3fdd4777b59b
-                % values of learnrate incrementation have been generated through experimentation of
-                % different values
                 if learnRate <= 0.99996
                     learnRate = learnRate + 0.00004;
                 end

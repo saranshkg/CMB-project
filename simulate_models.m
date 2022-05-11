@@ -43,7 +43,7 @@ function [data1, data2] = simulate_models()
     data1.parameter_cp = parameter_cp;
     data1.choiceHistory_bets = choiceHistory_bets;
     data1.rewardsObtained_wins = rewardsObtained_wins;
-    save('C:\Users\user\Desktop\Modelling_Challenge\data1.mat', 'data1');
+    %save('C:\Users\user\Desktop\Modelling_Challenge\data1.mat', 'data1');
     
     fprintf('Model 2: %s\n', model_names{2});
     parameters = NaN(nReps, 4);
@@ -60,5 +60,5 @@ function [data1, data2] = simulate_models()
     data2.parameter_cp = parameter_cp;
     data2.choiceHistory_bets = choiceHistory_bets;
     data2.rewardsObtained_wins = rewardsObtained_wins;
-    save('C:\Users\user\Desktop\Modelling_Challenge\data2.mat', 'data2');
+    %save('C:\Users\user\Desktop\Modelling_Challenge\data2.mat', 'data2');
 end

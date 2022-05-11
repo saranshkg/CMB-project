@@ -118,8 +118,8 @@ for i = 1:cpinc:160
             CK(t+1, 2) = CK(t, 2) + learnRate_CK * (0 - CK(t, 2));
         end
     end
-end
 
+end
 
 % compute negative log-likelihood
 NegLL = -sum(log(choiceProb));

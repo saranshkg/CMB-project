@@ -16,37 +16,45 @@ for n=1:nReps
     BIC_emp_data(n, :) = BIC;
 end
 
-figure(5); 
-title('BIC values comparison for empirical data');
+figure(4); 
+title('BIC values comparison for empirical data when fit on models:  RW vs RWCK')
+hold on;
 set(gcf, 'Position', [811   417   500   400])
 set(gca, 'fontsize', 12);
-plot(BIC_emp_data(:,1), 'b');
+plot(BIC_emp_data(:,1), 'b', 'LineWidth',1.25);
 hold on;
-plot(BIC_emp_data(:,2), 'r');
+plot(BIC_emp_data(:,2), 'r', 'LineWidth',1.25);
 legend({"Model 1: RW" + newline, "Model 2: RWCK"});
+xlabel('Empirical Dataset #')	
+ylabel('BIC Values')
 
 [cpinc_emp] = model_free_analysis(nReps);
 
-figure(6);
-title('X values comparison for empirical data: RW');
-set(gcf, 'Position', [811   417   500   400])
-set(gca, 'fontsize', 12);
-%plot(Xstart1, 'b');
-%hold on;
-plot(Xfit_mean1, 'g');
+figure(5);
+t = tiledlayout('flow','TileSpacing','compact');	
+nexttile
+title('Empirical change point (mean) vs Estimated change point (empirical data is fit on model: RW)')
 hold on;
-plot(cpinc_emp, 'r');
-legend({"X-fit_{mean}" + newline, "cpinc_{emp}"});
+%plot(Xstart1, 'b', 'LineWidth',1.25);	
+%hold on;	
+plot(Xfit_mean1, 'g', 'LineWidth',1.25);	
+hold on;	
+plot (cpinc_emp, 'r', 'LineWidth',1.25);	
+hold on;	
+xlabel('Empirical Dataset #')	
+ylabel('Change Point Occurence')
 
-
-
-figure(7);
-title('X values comparison for empirical data: RWCK');
-set(gcf, 'Position', [811   417   500   400])
-set(gca, 'fontsize', 12);
-%plot(Xstart2, 'b');
-%hold on;
-plot(Xfit_mean2, 'g');
+nexttile
+title('Empirical change point (mean) vs Estimated change point (empirical data is fit on model: RWCK)')
 hold on;
-plot(cpinc_emp, 'r');
-legend({"X-fit_{mean}" + newline, "cpinc_{emp}"});
+%plot (Xstart2, 'b', 'LineWidth',1.25);	
+%hold on;	
+plot (Xfit_mean2, 'g', 'LineWidth',1.25);	
+hold on;	
+plot (cpinc_emp, 'r', 'LineWidth',1.25);	
+hold on;	
+xlabel('Empirical Dataset #')	
+ylabel('Change Point Occurence')	
+lgd = legend ({"X-fit_{mean}" + newline, "cpinc_{emp}"});
+lgd.Layout.Tile = 2;	
+lgd.Layout.Tile = 'east';

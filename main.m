@@ -22,12 +22,65 @@ for n=1:nReps
     drawnow
 
     fprintf('Rep %1.0f\n',n)
-    [BIC, iBEST, BEST] = fit_models_on_simulated_data(sim_data_rw.choiceHistory_bets(n,:), sim_data_rw.rewardsObtained_wins(n,:));
+    [Xfit_mean_rw1(n), Xfit_mean_rwck1(n),Xstart_rw1(n), Xstart_rwck1(n), BIC, iBEST, BEST] = fit_models_on_simulated_data(sim_data_rw.choiceHistory_bets(n,:), sim_data_rw.rewardsObtained_wins(n,:));
     CM(1,:) = CM(1,:) + BEST;
+
     
-    [BIC, iBEST, BEST] = fit_models_on_simulated_data(sim_data_rwck.choiceHistory_bets(n,:), sim_data_rwck.rewardsObtained_wins(n,:));
+    [Xfit_mean_rw2(n), Xfit_mean_rwck2(n), Xstart_rw2(n), Xstart_rwck2(n), BIC, iBEST, BEST] = fit_models_on_simulated_data(sim_data_rwck.choiceHistory_bets(n,:), sim_data_rwck.rewardsObtained_wins(n,:));
     CM(2,:) = CM(2,:) + BEST;
 end
+
+
+%% Title = Comparing optimal value of number of trials, after which changepoint occurs, with starting value from fmincon, along with the value from the simulated dataset
+
+figure(2);
+
+t = tiledlayout('flow','TileSpacing','compact');
+nexttile
+plot (Xstart_rw1, 'b', 'LineWidth',1.25);
+hold on;
+plot (Xfit_mean_rw1, 'r', 'LineWidth',1.25);
+hold on;
+plot (sim_data_rw.parameter_cp, 'k', 'LineWidth',1.25);
+hold on;
+xlabel('Trial Number')
+ylabel('Change Point Occurance')
+
+nexttile
+plot (Xstart_rw2, 'b', 'LineWidth',1.25);
+hold on;
+plot (Xfit_mean_rw2, 'r', 'LineWidth',1.25);
+hold on;
+plot (sim_data_rwck.parameter_cp, 'k', 'LineWidth',1.25);
+hold on;
+xlabel('Trial Number')
+ylabel('Change Point Occurance')
+
+nexttile
+plot (Xstart_rwck1, 'b', 'LineWidth',1.25);
+hold on;
+plot (Xfit_mean_rwck1, 'r', 'LineWidth',1.25);
+hold on;
+plot (sim_data_rw.parameter_cp, 'k', 'LineWidth',1.25);
+hold on;
+xlabel('Trial Number')
+ylabel('Change Point Occurance')
+
+nexttile
+plot (Xstart_rwck2, 'b', 'LineWidth',1.25);
+hold on;
+plot (Xfit_mean_rwck2, 'r', 'LineWidth',1.25);
+hold on;
+plot (sim_data_rwck.parameter_cp, 'k', 'LineWidth',1.25);
+hold on;
+xlabel('Trial Number')
+ylabel('Change Point Occurance')
+
+lgd = legend ({"X_S_T_A_R_T" + newline, "X_F_I_T _M_E_A_N" + newline, "X_S_I_M_U_L_A_T_E_D _D_A_T_A "});
+lgd.Layout.Tile = 4;
+lgd.Layout.Tile = 'east';
+
+%% 
 
 figure(1); 
 title('Confusion Matrix')

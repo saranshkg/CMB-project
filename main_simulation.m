@@ -150,4 +150,8 @@ for i = 1:length(ly)
 end
 xlim([0.5 S(2)+0.5])
 ylim([0.5 S(1)+0.5])
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 09bfa971f87c147eed240d083ab260a157376f60

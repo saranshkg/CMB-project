@@ -126,13 +126,14 @@ for i = 1:cpinc:160
                 % different values
                 if learnRate_CK <= 0.99998
                     learnRate_CK = learnRate_CK + 0.00002;
-            end
+                end
 
-            % values of learnrate incrementation have been generated through experimentation of
-            % different values
-            if learnRate <= 0.99996
-                learnRate = learnRate + 0.00004;
-            end
+
+                % values of learnrate incrementation have been generated through experimentation of
+                % different values
+                if learnRate <= 0.99996
+                    learnRate = learnRate + 0.00004;
+                end
             else
                 if beta>=10
                     a(t) = find([-eps cumsum([p_1 p_2])] < (0.50*rand()), 1, 'last');
@@ -173,7 +174,6 @@ for i = 1:cpinc:160
     else
         changepoint = 0.2;
     end
-
 end
 end
 %% Ex-Existential Crisis:

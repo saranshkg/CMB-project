@@ -1,3 +1,7 @@
+% cpinc = randi([15,60]);
+% NegLL = lik_rw_updated1(a,r,cpinc);
+% disp(NegLL);
+
 function NegLL = lik_rw_updated(a, r, cpinc)
 
 nTrial = 160;
@@ -18,12 +22,12 @@ stake = [1 5 10 20 100];
 
 % Starting with a set learning rate
 alpha = 0.05;
-choiceProb = zeros(nTrial, Options);
 
 %% Simulation
 % Hardstop for breaking the changepoint after 160 trials
 for i = 1:cpinc:160
     for t = i:(i+cpinc)
+        t = floor(t);
         if t > 160
             break
         end

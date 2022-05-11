@@ -82,7 +82,7 @@ lgd.Layout.Tile = 'east';
 
 %% 
 
-figure(1); 
+figure(3); 
 title('Confusion Matrix')
 set(gcf, 'Position', [811   417   500   400])
 set(gca, 'fontsize', 12);

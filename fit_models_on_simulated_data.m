@@ -54,4 +54,5 @@ function [Xfit, LL, BIC, Xfit_mean,X0] = fit_rwck_updated(a, r)
     
     LL = -NegLL;
     BIC = length(X0) * log(length(a)) + 2*NegLL_mean;
+
 end

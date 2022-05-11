@@ -43,38 +43,45 @@ end
 
 
 figure(1); 
-title('Confusion Matrix');
-set(gcf, 'Position', [811   417   500   400])
-set(gca, 'fontsize', 12);
-
-
-figure(2); 
-title('BIC values comparison for simulated data - RW');
-set(gcf, 'Position', [811   417   500   400])
-set(gca, 'fontsize', 12);
-plot(BIC_rw_sim_data(:,1), 'b');
+title('Confusion Matrix: RW(model 1) vs RWCK(model 2)')
 hold on;
-plot(BIC_rw_sim_data(:,2), 'r');
-legend({"Model 1: RW" + newline, "Model 2: RWCK"});
-
-figure(3); 
-title('BIC values comparison for simulated data - RWCK')
 set(gcf, 'Position', [811   417   500   400])
 set(gca, 'fontsize', 12);
-plot(BIC_rwck_sim_data(:,1), 'b');
-hold on;
-plot(BIC_rwck_sim_data(:,2), 'r');
-legend({"Model 1: RW" + newline, "Model 2: RWCK"});
 
+
+figure(2);
+t = tiledlayout('flow','TileSpacing','compact');	
+nexttile
+title('BIC values comparison for simulated data: RW')
+hold on;
+plot(BIC_rw_sim_data(:,1), 'b', 'LineWidth',1.25);	
+hold on;
+plot(BIC_rw_sim_data(:,2), 'r', 'LineWidth',1.25);	
+xlabel('Trial Number')	
+ylabel('BIC Values')
+
+nexttile
+title('BIC values comparison for simulated data: RWCK')
+hold on;
+plot(BIC_rwck_sim_data(:,1), 'b', 'LineWidth',1.25);	
+hold on;
+plot(BIC_rwck_sim_data(:,2), 'r', 'LineWidth',1.25);	
+xlabel('Trial Number')	
+ylabel('BIC Values')
+lgd = legend ({"Model 1: RW" + newline, "Model 2: RWCK"});
+lgd.Layout.Tile = 2;	
+lgd.Layout.Tile = 'east';
 
 
 %% Title = Comparing optimal value of number of trials, after which 
 % changepoint occurs, with starting value from fmincon, along with 
 % the value from the simulated dataset
 
-figure(4);	
+figure(3);	
 t = tiledlayout('flow','TileSpacing','compact');	
 nexttile	
+title('Simulated change point (RW) vs Estimated change point (Simulated data is fit on model: RW)')
+hold on;
 %plot (Xstart_rw1, 'b', 'LineWidth',1.25);	
 %hold on;	
 plot (Xfit_mean_rw1, 'g', 'LineWidth',1.25);	
@@ -82,9 +89,11 @@ hold on;
 plot (sim_data_rw.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
 xlabel('Trial Number')	
-ylabel('Change Point Occurance')
+ylabel('Change Point Occurence')
 
 nexttile	
+title('Simulated change point (RW) vs Estimated change point (Simulated data is fit on model: RWCK)')
+hold on;
 %plot (Xstart_rw2, 'b', 'LineWidth',1.25);	
 %hold on;	
 plot (Xfit_mean_rw2, 'g', 'LineWidth',1.25);	
@@ -92,8 +101,11 @@ hold on;
 plot (sim_data_rwck.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
 xlabel('Trial Number')	
-ylabel('Change Point Occurance')	
+ylabel('Change Point Occurence')
+
 nexttile	
+title('Simulated change point (RWCK) vs Estimated change point (Simulated data is fit on model: RW)')
+hold on;
 %plot (Xstart_rwck1, 'b', 'LineWidth',1.25);	
 %hold on;	
 plot (Xfit_mean_rwck1, 'g', 'LineWidth',1.25);	
@@ -101,8 +113,11 @@ hold on;
 plot (sim_data_rw.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
 xlabel('Trial Number')	
-ylabel('Change Point Occurance')	
+ylabel('Change Point Occurence')	
+
 nexttile	
+title('Simulated change point (RWCK) vs Estimated change point (Simulated data is fit on model: RWCK)')
+hold on;
 %plot (Xstart_rwck2, 'b', 'LineWidth',1.25);	
 %hold on;	
 plot (Xfit_mean_rwck2, 'g', 'LineWidth',1.25);	
@@ -110,8 +125,8 @@ hold on;
 plot (sim_data_rwck.parameter_cp, 'r', 'LineWidth',1.25);	
 hold on;	
 xlabel('Trial Number')	
-ylabel('Change Point Occurance')	
-lgd = legend ({"X_{start}" + newline, "X-fit_{mean}" + newline, "cpinc_{sim}"});	
+ylabel('Change Point Occurence')	
+lgd = legend ({"X-fit_{mean}" + newline, "cpinc_{sim}"});
 lgd.Layout.Tile = 4;	
 lgd.Layout.Tile = 'east';
 
